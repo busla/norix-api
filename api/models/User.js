@@ -19,6 +19,11 @@ module.exports = {
       required: 'true',
       unique: true
     },
+    
+    club: {
+      type: 'string',
+      required: 'true'
+    },
 
     encryptedPassword: {
       type: 'string'

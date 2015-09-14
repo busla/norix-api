@@ -6,8 +6,7 @@
  */
 
 module.exports = {
-  create: function (req, res) {
-    console.log(req.body);
+  create: function (req, res) {    
     if (req.body.password !== req.body.confirmPassword) {
       return res.json(401, {err: 'Lykilorðin stemma ekki, en leiðinlegt :-/'});
     }
