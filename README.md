@@ -15,5 +15,5 @@ $ npm install
 $ sails lift
 ```
 
-### Web UI
+# Web UI
 See <a href="https://github.com/busla/norix-ui">norix-ui</a>
