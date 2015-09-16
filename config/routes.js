@@ -36,7 +36,9 @@ module.exports.routes = {
     view: 'homepage'
   },
 
-  'post /login': 'AuthController.index',
+  'post /login': 'AuthController.login',
+  'get /sync': 'SeminarController.sync',
+  //'get /seminar': 'SeminarController.index'
 
   /***************************************************************************
   *                                                                          *

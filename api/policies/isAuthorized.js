@@ -7,7 +7,6 @@
 
 module.exports = function (req, res, next) {
   var token; 
-  console.log(req);
 
   if (req.headers && req.headers.authorization) {
     var parts = req.headers.authorization.split(' ');
@@ -31,7 +30,7 @@ module.exports = function (req, res, next) {
 
   jwToken.verify(token, function (err, token) {
     if (err) return res.json(401, {err: 'Invalid Token!'});
-    req.token = token; // This is the decrypted token or the payload you provided
+    req.token = token; // This is the decrypted token or the payload you provided    
     next();
   });
 };

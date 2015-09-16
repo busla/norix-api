@@ -28,6 +28,11 @@ module.exports = {
     encryptedPassword: {
       type: 'string'
     },
+
+    user_has_seminars: {
+      collection: 'Seminar',
+      via: 'seminar_has_users',
+    },
     // We don't wan't to send back encrypted password either
     toJSON: function () {
       var obj = this.toObject();

@@ -18,6 +18,11 @@ module.exports = {
 
     },
     
+    seminar_has_users: {
+      collection: 'User',
+      via: 'user_has_seminars',
+    },
+
     players: {
       collection: 'Player',
       via: 'seminars'

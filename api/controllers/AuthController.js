@@ -6,8 +6,8 @@
  */
 
 module.exports = {
-  index: function (req, res) {
-
+  login: function (req, res) {
+    
     if (!req.param('user') || !req.param('password') || !req.param('club')) {
       return res.json(401, {err: 'Það vantar eitthvað í formið'});
     }
@@ -17,15 +17,19 @@ module.exports = {
         if (user) {            
           User.comparePassword(req.param('password'), user, function (err, valid) {                
             if (err) {
-              return res.json(403, {err: 'forbidden'});
+              return res.json(403, {err: 'bannað!'});
             } 
                            
             if (!valid) {
-              return res.json(401, {err: 'invalid email or password'});                  
+              return res.json(401, {err: 'rangt notandanafn eða lykilorð'});                  
             } else {
               res.json({
                 user: user,
-                token: jwToken.issue({id : user.id })
+                /* 
+                TODO: figure out how to have bcrypt return the unencrypted 
+                password to prevent storing unencrypted password in token 
+                */
+                token: jwToken.issue({id : user.id, password: req.param('password'), seminars: user.seminars })
               });                  
             }                                     
           })               
@@ -35,18 +39,7 @@ module.exports = {
             console.log('results: ', results);
 
             if (results) {              
-              User.create({club: req.param('club'), username: req.param('user'), password: req.param('password')})
-              .then(function(user) {                
-
-                // If user created successfuly we return user and token as response
-                if (user) {
-                  // NOTE: payload is { id: user.id}
-                  res.json(200, {user: user, token: jwToken.issue({id: user.id})});
-                }
-              })
-              .catch(function (err) {
-                return res.json(err.status, {err: err});
-              }); 
+              res.json(200);
             }
             else {
               return res.json(403, {err: 'Gat ekki innskráð þig í Nora :-/'});  
@@ -57,6 +50,6 @@ module.exports = {
       .catch(function (err) {
         return res.json(err.status, {err: err});
       }); 
-  }
+  },
 
 };
