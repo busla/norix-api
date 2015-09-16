@@ -23,7 +23,7 @@ module.exports = {
             if (!valid) {
               return res.json(401, {err: 'rangt notandanafn eða lykilorð'});                  
             } else {
-              res.json({
+              res.json(200, {
                 user: user,
                 /* 
                 TODO: figure out how to have bcrypt return the unencrypted 
@@ -38,8 +38,21 @@ module.exports = {
           Scrapy.scrape(req.param('user'), req.param('password'), req.param('club'), function(results) {      
             console.log('results: ', results);
 
-            if (results) {              
-              res.json(200);
+            if (results) {
+              User.findOne({username: req.param('user')})
+                .then(function(user) {
+                  res.json(200, {
+                    user: user,
+                    /* 
+                    TODO: figure out how to have bcrypt return the unencrypted 
+                    password to prevent storing unencrypted password in token 
+                    */
+                    token: jwToken.issue({id : user.id, password: req.param('password'), seminars: user.seminars })
+                  });
+                })
+              .catch(function (err) {
+                return res.json(err.status, {err: err});
+              });
             }
             else {
               return res.json(403, {err: 'Gat ekki innskráð þig í Nora :-/'});  
