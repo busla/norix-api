@@ -13,8 +13,9 @@ module.exports = {
     }
 
     User.findOne({username: req.param('user')})
+    .populate('user_has_seminars')
       .then(function(user) {
-        if (user) {            
+        if (user) {          
           User.comparePassword(req.param('password'), user, function (err, valid) {                
             if (err) {
               return res.json(403, {err: 'bannað!'});
@@ -23,31 +24,41 @@ module.exports = {
             if (!valid) {
               return res.json(401, {err: 'rangt notandanafn eða lykilorð'});                  
             } else {
+              var seminars = [];
+              user.user_has_seminars.forEach(function (seminar) {
+                  seminars.push(seminar.seminar_id)
+              });
+              console.log('SEMINARS: ', seminars)
               res.json(200, {
-                user: user,
+                username: user.username,
                 /* 
                 TODO: figure out how to have bcrypt return the unencrypted 
                 password to prevent storing unencrypted password in token 
                 */
-                token: jwToken.issue({id : user.id, password: req.param('password'), seminars: user.seminars })
+                token: jwToken.issue({id : user.id, password: req.param('password'), seminars: seminars})
               });                  
             }                                     
           })               
         }
         else {
           Scrapy.scrape(req.param('user'), req.param('password'), req.param('club'), function(results) {      
-            console.log('results: ', results);
+            //console.log('results: ', results);
 
             if (results) {
               User.findOne({username: req.param('user')})
-                .then(function(user) {
+              .populate('user_has_seminars')
+                .then(function(user) {   
+                  var seminars = [];
+                  user.user_has_seminars.forEach(function (seminar) {
+                      seminars.push(seminar.seminar_id)
+                  });
                   res.json(200, {
-                    user: user,
+                    username: user.username,
                     /* 
                     TODO: figure out how to have bcrypt return the unencrypted 
                     password to prevent storing unencrypted password in token 
                     */
-                    token: jwToken.issue({id : user.id, password: req.param('password'), seminars: user.seminars })
+                    token: jwToken.issue({id : user.id, password: req.param('password'), seminars: seminars })
                   });
                 })
               .catch(function (err) {

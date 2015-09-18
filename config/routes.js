@@ -38,7 +38,7 @@ module.exports.routes = {
 
   'post /login': 'AuthController.login',
   'get /sync': 'SeminarController.sync',
-  //'get /seminar': 'SeminarController.index'
+  'get /seminar': 'SeminarController.index',
 
   /***************************************************************************
   *                                                                          *
