@@ -10,14 +10,15 @@ var
   tokenSecret = "psilocybin";
 
 // Generates a token from supplied payload
-module.exports.issue = function(payload) {
-  return jwt.sign(
+module.exports.issue = function(payload, cb) {
+  
+  cb(null, jwt.sign(
     payload,
     tokenSecret, // Token Secret that we sign it with
     {
       expiresInMinutes : 525949 // Token expire time is 1 year
     }
-  );
+  ));
 };
 
 // Verifies token on a request

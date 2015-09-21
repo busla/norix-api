@@ -52,4 +52,3 @@ module.exports.scrape = function(user, password, club, cb) {
       return cb(err)
     })  
 };
-

@@ -8,6 +8,16 @@
 module.exports = {
   
   index: function(req, res) {
+    console.log('SeminarController: ', req.token.seminars); 
+    SeminarService.getSeminars(req.token.seminars, function(err, results) {
+      //console.log('SeminarController: ', results); 
+      if (err) {
+        return res.json(err);  
+      }
+
+      res.json(200, {data: results})
+    }); 
+    /*   
     //console.log('SeminarController: ', req.token.seminars);
     Seminar.find({where: {seminar_id: req.token.seminars}})
     .populate('attendance')
@@ -16,6 +26,10 @@ module.exports = {
         //console.log(seminars);
         res.json(200, seminars)  
       })
+      .catch(function (err) {
+        return res.json(err.status, {err: err});
+      });       
+    */
     /*    
     Seminar.find()
     .populate('players')
@@ -27,11 +41,9 @@ module.exports = {
           //res.json(200, seminars)          
         }
       })
-      */  
-      .catch(function (err) {
-        return res.json(err.status, {err: err});
-      });  
-         
+      
+ 
+      */     
   },
   
   sync: function (req, res) {
