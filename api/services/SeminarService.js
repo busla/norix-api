@@ -5,9 +5,9 @@ module.exports.getSeminars = function(seminarId, cb) {
   //var seminarIds = seminars;
   seminarId.map(String);
 
-  Seminar.find({seminar_id: seminarId})
-  .populate('attendance')
-  .populate('players')
+  Seminar.find({seminar_id: seminarId}).sort('age_group ASC')
+  .populate('attendance', { sort: 'date DESC' })
+  .populate('players', { sort: 'player_name ASC' })
     .then(function(seminars) {
       //console.log(seminars);
       cb(null, seminars)  
