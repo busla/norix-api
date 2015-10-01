@@ -9,7 +9,6 @@
 var bcrypt = require('bcrypt');
 
 module.exports = {
-  connection: 'sailsMongoDBServer',  
   schema: true,
   tableName: 'users',
   
