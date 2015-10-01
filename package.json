@@ -1,5 +1,5 @@
 {
-  "name": "Norix API",
+  "name": "norix-api",
   "private": true,
   "version": "0.0.1",
   "description": "REST API for Norix",
@@ -38,7 +38,7 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/nonni/sails-test.git"
+    "url": "git://github.com/busla/norix-api.git"
   },
   "author": "nonni",
   "license": "MIT"
