@@ -6,7 +6,6 @@
 */
 
 module.exports = {
-  connection: 'sailsMongoDBServer',
   tableName: 'seminars',
   autoPK: false,
 
