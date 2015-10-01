@@ -1,9 +1,13 @@
 {
-  "name": "sails-test",
+  "name": "Norix API",
   "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
+  "version": "0.0.1",
+  "description": "REST API for Norix",
   "keywords": [],
+  "engines": {
+    "node": "0.12.7",
+    "npm": "2.14.1"
+  },  
   "dependencies": {
     "bcrypt": "^0.8.5",
     "ejs": "~0.8.4",
@@ -37,5 +41,5 @@
     "url": "git://github.com/nonni/sails-test.git"
   },
   "author": "nonni",
-  "license": ""
+  "license": "MIT"
 }
