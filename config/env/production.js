@@ -10,29 +10,67 @@
  *
  */
 
+ 
+
 module.exports = {
 
-  /***************************************************************************
-   * Set the default database connection for models in the production        *
-   * environment (see config/connections.js and config/models.js )           *
-   ***************************************************************************/
+  models: {
+    migrate: 'safe'
+  },
+  
+  connections : {
 
-  // models: {
-  //   connection: 'someMysqlServer'
-  // },
+    someMongodbServer: {
+      adapter: 'sails-mongo',
+      //host: process.env.MONGO_PORT_27017_TCP_ADDR,
+      //port: process.env.MONGO_PORT_27017_TCP_PORT,
+      //db: process.env.MONGO_URL,
+      url: process.env.MONGO_URL             
+    },
+    
+  },
+
+  session: {
+
+    secret: 'b00850bef62d5a334505ea1baf351469',
+
+    // cookie: {
+    //   maxAge: 24 * 60 * 60 * 1000
+    // },
+
+
+    adapter: 'mongo',
+    url: process.env.MONGO_URL
+
+  /***************************************************************************
+  *                                                                          *
+  * Optional Values:                                                         *
+  *                                                                          *
+  * # Note: url will override other connection settings url:                 *
+  * 'mongodb://user:pass@host:port/database/collection',                     *
+  *                                                                          *
+  ***************************************************************************/
+
+  // username: '',
+  // password: '',
+  // auto_reconnect: false,
+  // ssl: false,
+  // stringify: true
+
+  },   
 
   /***************************************************************************
    * Set the port in the production environment to 80                        *
    ***************************************************************************/
 
-  // port: 80,
+   port: 1337,
 
   /***************************************************************************
    * Set the log level in production environment to "silent"                 *
    ***************************************************************************/
 
-  // log: {
-  //   level: "silent"
-  // }
+   log: {
+     level: "silly"
+   }
 
 };
