@@ -10,7 +10,7 @@
  *
  */
 
- 
+
 
 module.exports = {
 
@@ -72,5 +72,13 @@ module.exports = {
    log: {
      level: "silly"
    }
+
+  cors: {
+    allRoutes: true,
+
+    origin: 'http://norix-ui.projects.nonni.cc',
+
+    headers: ['content-type', 'authorization']    
+  }
 
 };
