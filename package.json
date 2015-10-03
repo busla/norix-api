@@ -4,6 +4,10 @@
   "version": "0.0.1",
   "description": "REST API for Norix",
   "keywords": [],
+  "engines": {
+    "node": "0.12.7",
+    "npm": "2.14.1"
+  },
   "dependencies": {
     "bcrypt": "^0.8.5",
     "connect-mongo": "^0.8.2",
