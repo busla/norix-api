@@ -30,13 +30,7 @@ module.exports = {
   },
 
   session: {
-
     secret: 'b00850bef62d5a334505ea1baf351469',
-
-    // cookie: {
-    //   maxAge: 24 * 60 * 60 * 1000
-    // },
-
 
     adapter: 'mongo',
     url: process.env.MONGO_URL
