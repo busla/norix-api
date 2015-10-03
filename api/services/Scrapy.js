@@ -10,7 +10,7 @@ module.exports.scrape = function(user, password, club, cb) {
     var rp = require('request-promise');
     var urls = {
         noriUrl: 'http://'+club+'.felog.is/UsersLogin.aspx',
-        scrapyUrl: 'http://127.0.0.1:9080/crawl.json'
+        scrapyUrl: 'http://norix-scraper.projects.nonni.cc/crawl.json'
     };
 
     var payload = {      
