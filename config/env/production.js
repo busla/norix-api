@@ -11,7 +11,6 @@
  */
 
 
-
 module.exports = {
 
   models: {
@@ -28,6 +27,12 @@ module.exports = {
       url: process.env.MONGO_URL             
     },
     
+  },
+  
+  cors: {
+    allRoutes: true,
+    origin: 'http://norix-ui.projects.nonni.cc',
+    headers: ['content-type', 'authorization']    
   },
 
   session: {
@@ -72,13 +77,5 @@ module.exports = {
    log: {
      level: "silly"
    }
-
-  cors: {
-    allRoutes: true,
-
-    origin: 'http://norix-ui.projects.nonni.cc',
-
-    headers: ['content-type', 'authorization']    
-  }
 
 };
