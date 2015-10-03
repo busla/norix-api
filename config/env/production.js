@@ -28,12 +28,6 @@ module.exports = {
     },
     
   },
-  
-  cors: {
-    allRoutes: true,
-    origin: 'http://norix-ui.projects.nonni.cc',
-    headers: ['content-type', 'authorization']    
-  },
 
   session: {
 
