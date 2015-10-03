@@ -47,7 +47,7 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-   origin: 'http://norix-ui.projects.nonni.cc',
+   origin: '*',
 
   /***************************************************************************
   *                                                                          *
@@ -73,6 +73,6 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-  headers: ['content-type', 'authorization']
+  headers: ['content-type', 'authorization', 'Access-Control-Allow-Origin']
 
 };
