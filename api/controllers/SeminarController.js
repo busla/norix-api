@@ -56,8 +56,17 @@ module.exports = {
           Scrapy.scrape(user.username, req.token.password, user.club, function(results) {      
             console.log('results: ', results);
 
-            if (results) {              
-              return res.json(200, {});
+            if (results) { 
+              SeminarService.getSeminars(req.token.seminars, function(err, results) { 
+                
+                console.log(user.username);     
+                if (err) {
+                  return res.json(err);  
+                }
+
+                res.json(200, {data: results})
+              });                          
+              //return res.json(200, {});
             }
             else {
               return res.json(403, {err: 'Gat ekki innskráð þig í Nora :-/'});  
