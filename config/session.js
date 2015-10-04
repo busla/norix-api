@@ -30,7 +30,7 @@ module.exports.session = {
   * the example below is for 24 hours                                        *
   *                                                                          *
   ***************************************************************************/
-
+  
    cookie: {
      maxAge: 24 * 60 * 60 * 1000
    },
@@ -66,11 +66,11 @@ module.exports.session = {
   * store                                                                    *
   *                                                                          *
   ***************************************************************************/
-
+  
    adapter: 'mongo',
    host: 'localhost',
    port: 27017,
-   db: 'norix',
+   db: 'norix-api',
    collection: 'sessions',
 
   /***************************************************************************

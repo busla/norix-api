@@ -17,6 +17,10 @@ module.exports = {
     migrate: 'safe'
   },
   
+  scraper: {
+    url: 'http://scraper:9080/crawl.json'
+  },  
+
   connections : {
 
     someMongodbServer: {
