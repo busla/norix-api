@@ -31,11 +31,15 @@ module.exports = {
               
               jwToken.issue({id : user.id, password: req.param('password'), seminars: seminars}, function(err, token) {
                 if (!(err)) {
-                  console.log('TOKEN: ', token);
-                  console.log('SEMINARS: ', seminars);
-                  SeminarService.getSeminars(seminars, function(err, results) { 
+                  //console.log('TOKEN: ', token);
+                  //console.log('SEMINARS: ', seminars);
+                  //console.log('req: ', req);
+
+                  
+
+                  SeminarService.getSeminars(req, seminars, function(err, results) { 
                     
-                    console.log(user.username);     
+                    //console.log(user.username);     
                     if (err) {
                       return res.json(err);  
                     }
@@ -72,11 +76,11 @@ module.exports = {
                   //console.log({id : user.id, password: req.param('password'), seminars: seminars });
                   jwToken.issue({id : user.id, password: req.param('password'), seminars: seminars}, function(err, token) {
                     if (!(err)) {
-                      console.log('TOKEN: ', token);
-                      console.log('SEMINARS: ', seminars);
-                      SeminarService.getSeminars(seminars, function(err, results) { 
+                      //console.log('TOKEN: ', token);
+                      //console.log('SEMINARS: ', seminars);
+                      SeminarService.getSeminars(req, seminars, function(err, results) { 
                         
-                        console.log(user.username);     
+                        //console.log(user.username);     
                         if (err) {
                           return res.json(err);  
                         }

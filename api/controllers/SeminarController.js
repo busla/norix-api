@@ -9,7 +9,7 @@ module.exports = {
   
   index: function(req, res) {
     console.log('SeminarController: ', req.token.seminars); 
-    SeminarService.getSeminars(req.token.seminars, function(err, results) {
+    SeminarService.getSeminars(req, req.token.seminars, function(err, results) {
       //console.log('SeminarController: ', results); 
       if (err) {
         return res.json(err);  
@@ -57,7 +57,7 @@ module.exports = {
             console.log('results: ', results);
 
             if (results) { 
-              SeminarService.getSeminars(req.token.seminars, function(err, results) { 
+              SeminarService.getSeminars(req, req.token.seminars, function(err, results) { 
                 
                 console.log(user.username);     
                 if (err) {

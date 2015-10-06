@@ -1,12 +1,13 @@
 
-module.exports.getSeminars = function(seminarId, cb) {
+module.exports.getSeminars = function(req, seminars, cb) {
     //console.log('SeminarController: ', req.token.seminars);
   //console.log('seminars: ', seminarId);
   //var seminarIds = seminars;
-  seminarId.map(String);
+  console.log('seminars: ', seminars);
+  var seminarList = seminars.map(String);
 
-  Seminar.find({seminar_id: seminarId}).sort('age_group ASC')
-  .populate('attendance', { sort: 'date DESC' })
+  Seminar.find({seminar_id: seminarList}).sort('age_group ASC')
+  .populate('attendance', { sort: 'date DESC', limit: req.param('limit'), skip: req.param('skip') })
   .populate('players', { sort: 'player_name ASC' })
     .then(function(seminars) {
       //console.log(seminars);
@@ -29,3 +30,5 @@ module.exports.getSeminars = function(seminarId, cb) {
     });  
          
 };
+
+
